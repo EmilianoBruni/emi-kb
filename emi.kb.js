@@ -4,15 +4,15 @@
   Emi.kb.Model = function(url, type) {
     var mod = Backbone.Model.extend();
     mod.prototype.urlRoot = url;
-    if (type === "mongo") {
-      mod.prototype.parse = function(data) {
-        var item = data[0] ? data[0] : data;
+    mod.prototype.parse = function(data) {
+      var item = data[0] ? data[0] : data;
+      if (type === "mongo") {
         if (item) {
           if (item._id) item.id = item._id["$oid"];
         }
-        return item;
-      };
-    }
+      }
+      return item;
+    };
     return mod;
   };
 
