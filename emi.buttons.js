@@ -33,7 +33,6 @@
                     trigged_event = 'clone';
                     break;
             }
-            console.log('Trigging ' + trigged_event);
             if (params.view_model) {
                 this.trigger(trigged_event);
             } else {
@@ -63,7 +62,6 @@
         enabled.forEach(function(item) {
             template = template + ' ' + buttons[item].template;
         });
-        console.log('Template: %O', template);
         return template;
     };
 
