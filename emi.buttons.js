@@ -39,8 +39,8 @@
                 $(window).trigger(trigged_event);
             }
         };
-        /* se il parent ha rischiesto il mio view_model 
-         * <emi-buttons params="view_model: vmButtons"></emi-buttons> 
+        /* se il parent ha rischiesto il mio view_model
+         * <emi-buttons params="view_model: vmButtons"></emi-buttons>
          * glielo ritorno. Il parametro view_model deve essere un osservabile */
         if (params && params.view_model) params.view_model(this);
         var visible = (params && params.visible) || ['save', 'delete', 'new', 'clone'];
@@ -51,9 +51,9 @@
 
     var buttonsTemplate = function() {
         var buttons = {
-            save: { template: '<button class="btn btn-success btn-block" data-bind="click: btn_clicked, visible: buttons.save.visible(), enable: buttons.save.enabled(), "> <i class="fa fa-floppy-o fa-lg fa-fw"></i> Salva</button>' },
-            delete: { template: '<button class="btn btn-danger btn-block" data-bind="click: btn_clicked, visible: buttons.delete.visible(), enable: buttons.delete.enabled()"> <i class="fa fa-trash-o fa-lg fa-fw"></i> Elimina</button>' },
-            new: { template: '<button class="btn btn-primary btn-block" data-bind="click: btn_clicked, visible: buttons.new.visible(), enable: buttons.new.enabled()"> <i class="fa fa-file-o fa-lg fa-fw"></i> Nuovo</button>' },
+            save: { template: '<button class="btn btn-success btn-block" data-bind="click: btn_clicked, visible: buttons.save.visible(), enable: buttons.save.enabled(), "> <i class="far fa-save fa-lg fa-fw"></i> Salva</button>' },
+            delete: { template: '<button class="btn btn-danger btn-block" data-bind="click: btn_clicked, visible: buttons.delete.visible(), enable: buttons.delete.enabled()"> <i class="far fa-trash-alt fa-lg fa-fw"></i> Elimina</button>' },
+            new: { template: '<button class="btn btn-primary btn-block" data-bind="click: btn_clicked, visible: buttons.new.visible(), enable: buttons.new.enabled()"> <i class="far fa-file fa-lg fa-fw"></i> Nuovo</button>' },
             clone: { template: '<button class="btn btn-warning btn-block" data-bind="click: btn_clicked, visible: buttons.clone.visible(), enable: buttons.clone.enabled()"><i class="fa fa-clone fa-lg fa-fw"></i> Duplica</button>' },
         }
         //var enabled = (params && params.enabled) || ['save', 'delete', 'new', 'clone'];
