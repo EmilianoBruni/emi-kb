@@ -19,12 +19,8 @@
                     item = item[0]
                 }
             }
-            if (type === "mongo") {
-                if (item) {
-                    if (item._id) {
-                        item.id = item._id["$oid"] ?
-                            item._id["$oid"] : item._id;
-                }
+            if (type === "mongo" && item && item._id) {
+                item.id = item._id["$oid"] ? item._id["$oid"] : item._id;
             }
             return item;
         };
