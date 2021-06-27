@@ -2,11 +2,11 @@
     Emi.kb = Emi.kb || {};
 
     Emi.kb.Model = function(url, opt = {}) {
-        var type = opt.type || '';
-        var deferred = opt.deferred || false;
+        var type = opt.type || ''; delete opt.type;
+        var deferred = opt.deferred || false; delete deferred.type;
         var mod = deferred ?
-            Backbone.Deferred.Model.extend() :
-            Backbone.Model.extend();
+            Backbone.Deferred.Model.extend(opt) :
+            Backbone.Model.extend(opt);
         mod.prototype.urlRoot = url;
         mod.prototype.parse = function(data) {
             var item = data;
@@ -28,10 +28,10 @@
     };
 
     Emi.kb.Collection = function(model, opt = {}) {
-        var deferred = opt.deferred || false;
+        var deferred = opt.deferred || false; delete opt.deferred;
         var coll = deferred ?
-            Backbone.Deferred.Collection.extend() :
-            Backbone.Collection.extend();
+            Backbone.Deferred.Collection.extend(opt) :
+            Backbone.Collection.extend(opt);
         coll.prototype.model = model;
         coll.prototype.url = model.prototype.urlRoot;
         return coll;
