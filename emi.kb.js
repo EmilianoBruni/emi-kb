@@ -50,15 +50,15 @@
                 return resp.recs;
             };
             opt.fetch = function(options) {
-                // aggiunto with_count: 1 alla querystring per avere
-                // come risultato {count: n, recs: [...]}
+                // add with_count: 1 to querystring that you can use
+                // to add record counts to you results{count: n, recs: [...]}
                 options.data = _.extend(options.data || {}, {with_count: 1});
                 Backbone.PageableCollection.prototype.fetch.call(this, options);
             };
             console.log(opt);
             coll = Backbone.PageableCollection.extend(opt);
         }
-        //if (!coll) coll = Backbone.Collection.extend(opt);
+        if (!coll) coll = Backbone.Collection.extend(opt);
         coll.prototype.model = model;
         coll.prototype.url = model.prototype.urlRoot;
         return coll;
