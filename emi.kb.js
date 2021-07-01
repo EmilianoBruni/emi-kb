@@ -50,6 +50,7 @@
                 return resp.recs;
             };
             opt.fetch = function(options) {
+                options = options || {};
                 // add with_count: 1 to querystring that you can use
                 // to add record counts to you results{count: n, recs: [...]}
                 options.data = _.extend(options.data || {}, {with_count: 1});
