@@ -41,7 +41,8 @@
             opt.queryParams = _.defaults(opt.queryParams || {}, {
                 currentPage: "page",
                 pageSize: "limit",
-                sortKey: "sort"
+                sortKey: "sort",
+                addRecordsCount: "with_count",
             });
             opt.parseState = function (resp, queryParams, state, options) {
                 return {totalRecords: resp.count};
@@ -51,12 +52,14 @@
             };
             opt.fetch = function(options) {
                 options = options || {};
-                // add with_count: 1 to querystring that you can use
+                // add addRecordsCount to querystring that you can use
                 // to add record counts to you results{count: n, recs: [...]}
-                options.data = _.extend(options.data || {}, {with_count: 1});
+                if (this.queryParams.addRecordsCount != '') {
+                    options.data = options.data || {};
+                    options.data[this.queryParams.addRecordsCount] = 1;
+                }
                 Backbone.PageableCollection.prototype.fetch.call(this, options);
             };
-            console.log(opt);
             coll = Backbone.PageableCollection.extend(opt);
         }
         if (!coll) coll = Backbone.Collection.extend(opt);
