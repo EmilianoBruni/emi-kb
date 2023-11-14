@@ -3,6 +3,7 @@
 
     Emi.kb.Model = function(url, opt = {}) {
         var type = opt.type || ''; delete opt.type;
+        if (type === "mongodb") opt.idAttribute = "_id";
         var deferred = opt.deferred || false; delete deferred.type;
         var mod = deferred ?
             Backbone.Deferred.Model.extend(opt) :
@@ -19,7 +20,9 @@
                     item = item[0]
                 }
             }
+            // this is deprecated
             if (type === "mongo" && item && item._id) {
+                console.log('mongo type is deprecated. Use mongodb instead');
                 item.id = item._id["$oid"] ? item._id["$oid"] : item._id;
             }
             return item;
